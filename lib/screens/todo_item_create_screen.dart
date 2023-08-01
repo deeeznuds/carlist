@@ -1,7 +1,11 @@
+import 'package:carlist/cubit/todo_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ToDoItemCreateScreen extends StatelessWidget {
   const ToDoItemCreateScreen({super.key});
+
+  static String title = '';
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +14,14 @@ class ToDoItemCreateScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('New ToDo'),
       ),
-      body: const Column(
+      body: Column(
         children: [
-          TextField(),
+          TextField(onChanged: (value) => title = value),
+          ElevatedButton(
+            onPressed: () =>
+                BlocProvider.of<TodoCubit>(context).saveToDo(title, ''),
+            child: const Text('SAVE'),
+          ),
         ],
       ),
     );

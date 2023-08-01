@@ -1,22 +1,24 @@
+import 'package:carlist/cubit/todo_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ToDoItemsListScreen extends StatelessWidget {
   const ToDoItemsListScreen({super.key});
 
-  static final List<ToDoListItem> toDoItems = [
-    ToDoListItem(
-      title: 'Change motor oil',
-      subtitle: 'LiquiMoly 5W-40 Molygen',
-    ),
-    ToDoListItem(
-      title: 'Change brake pads',
-      subtitle: 'EBC yellow stuff',
-    ),
-    ToDoListItem(
-      title: 'Fix seatbelt squeak',
-      subtitle: 'Use anti-squeak sticky tape',
-    ),
-  ];
+  // static final List<ToDoListItem> toDoItems = [
+  //   ToDoListItem(
+  //     title: 'Change motor oil',
+  //     subtitle: 'LiquiMoly 5W-40 Molygen',
+  //   ),
+  //   ToDoListItem(
+  //     title: 'Change brake pads',
+  //     subtitle: 'EBC yellow stuff',
+  //   ),
+  //   ToDoListItem(
+  //     title: 'Fix seatbelt squeak',
+  //     subtitle: 'Use anti-squeak sticky tape',
+  //   ),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +31,18 @@ class ToDoItemsListScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: toDoItems.length,
-                itemBuilder: (ctx, index) => ToDoListItemWidget(
-                  title: toDoItems[index].title,
-                  subtitle: toDoItems[index].subtitle,
-                ),
-              ),
+            BlocBuilder<TodoCubit, TodoState>(
+              builder: (context, state) {
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: 1,
+                    itemBuilder: (ctx, index) => ToDoListItemWidget(
+                      title: state.title,
+                      subtitle: state.text,
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),
