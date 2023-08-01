@@ -1,8 +1,8 @@
-import 'package:carlist/cubit/todo_cubit.dart';
-import 'package:carlist/screens/todo_item_create_screen.dart';
-import 'package:carlist/screens/todo_items_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'logic/cubits/todo_cubit.dart';
+import 'presentation/router/app_router.dart';
 
 void main() {
   runApp(const Main());
@@ -13,7 +13,7 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProvider<TodoCubit>(
       create: (context) => TodoCubit(),
       child: MaterialApp(
         title: 'CarList',
@@ -22,10 +22,7 @@ class Main extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
           useMaterial3: true,
         ),
-        routes: {
-          '/': (context) => const ToDoItemsListScreen(),
-          '/create': (context) => const ToDoItemCreateScreen(),
-        },
+        onGenerateRoute: AppRouter().onGeneratedRoute,
       ),
     );
   }
