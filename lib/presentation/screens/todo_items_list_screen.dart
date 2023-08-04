@@ -1,51 +1,51 @@
+import 'package:carlist/constants/enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../logic/cubits/todo_cubit.dart';
+import '../../logic/cubit/internet_cubit.dart';
+import '../../logic/cubit/todo_cubit.dart';
 
 class ToDoItemsListScreen extends StatelessWidget {
   const ToDoItemsListScreen({super.key});
 
-  // static final List<ToDoListItem> toDoItems = [
-  //   ToDoListItem(
-  //     title: 'Change motor oil',
-  //     subtitle: 'LiquiMoly 5W-40 Molygen',
-  //   ),
-  //   ToDoListItem(
-  //     title: 'Change brake pads',
-  //     subtitle: 'EBC yellow stuff',
-  //   ),
-  //   ToDoListItem(
-  //     title: 'Fix seatbelt squeak',
-  //     subtitle: 'Use anti-squeak sticky tape',
-  //   ),
-  // ];
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('ToDo List'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            BlocBuilder<TodoCubit, TodoState>(
-              builder: (context, state) {
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: 1,
-                    itemBuilder: (ctx, index) => ToDoListItemWidget(
-                      title: state.title,
-                      subtitle: state.text,
+    return BlocListener<InternetCubit, InternetState>(
+      listener: (context, state) {
+        if (state is InternetConnected &&
+            state.connectionType == ConnectionType.wifi) {
+          BlocProvider.of<TodoCubit>(context).saveToDo('WIFI', '');
+        } else if (state is InternetConnected &&
+            state.connectionType == ConnectionType.mobile) {
+          BlocProvider.of<TodoCubit>(context).saveToDo('MOBILE', '');
+        } else if (state is InternetDisconnected) {
+          BlocProvider.of<TodoCubit>(context).saveToDo('DISCONNECTED', '');
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: const Text('ToDo List'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              BlocBuilder<TodoCubit, TodoState>(
+                builder: (context, state) {
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: 1,
+                      itemBuilder: (ctx, index) => ToDoListItemWidget(
+                        title: state.title,
+                        subtitle: state.text,
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
-          ],
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

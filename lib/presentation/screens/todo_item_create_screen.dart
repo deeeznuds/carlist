@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../logic/cubits/todo_cubit.dart';
+import '../../logic/cubit/todo_cubit.dart';
 
 class ToDoItemCreateScreen extends StatelessWidget {
   const ToDoItemCreateScreen({super.key});

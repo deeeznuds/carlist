@@ -1,20 +1,33 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'logic/cubits/todo_cubit.dart';
+import 'logic/cubit/internet_cubit.dart';
+import 'logic/cubit/todo_cubit.dart';
 import 'presentation/router/app_router.dart';
 
 void main() {
-  runApp(const Main());
+  runApp(Main(connectivity: Connectivity()));
 }
 
 class Main extends StatelessWidget {
-  const Main({super.key});
+  final Connectivity connectivity;
+  const Main({
+    super.key,
+    required this.connectivity,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<TodoCubit>(
-      create: (context) => TodoCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<InternetCubit>(
+          create: (context) => InternetCubit(connectivity: connectivity),
+        ),
+        BlocProvider<TodoCubit>(
+          create: (context) => TodoCubit(),
+        ),
+      ],
       child: MaterialApp(
         title: 'CarList',
         debugShowCheckedModeBanner: false,
