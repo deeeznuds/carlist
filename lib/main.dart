@@ -2,7 +2,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'logic/cubit/internet_cubit.dart';
 import 'logic/cubit/todo_cubit.dart';
 import 'presentation/router/app_router.dart';
 
@@ -21,9 +20,6 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<InternetCubit>(
-          create: (context) => InternetCubit(connectivity: connectivity),
-        ),
         BlocProvider<TodoCubit>(
           create: (context) => TodoCubit(),
         ),
