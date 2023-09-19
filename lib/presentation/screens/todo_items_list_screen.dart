@@ -23,14 +23,21 @@ class TodoItemsListScreen extends StatelessWidget {
           children: [
             BlocBuilder<TodoCubit, TodoState>(
               builder: (context, state) {
-                todoItems = state.items;
+                todoItems = state.items.reversed.toList();
                 return Expanded(
                   child: ListView.builder(
                     itemCount: todoItems.length,
                     itemBuilder: (ctx, index) => TodoListItemWidget(
-                      id: todoItems[index].id,
                       title: todoItems[index].title,
                       subtitle: todoItems[index].text,
+                      onTap: () => navigateToItem(
+                        TodoItemDto(
+                          id: todoItems[index].id,
+                          title: todoItems[index].title,
+                          text: todoItems[index].text,
+                        ),
+                      ),
+                      onDelete: () => deleteItem(context, todoItems[index].id),
                     ),
                   ),
                 );
@@ -48,41 +55,72 @@ class TodoItemsListScreen extends StatelessWidget {
       ),
     );
   }
+
+  void navigateToItem(TodoItemDto itemDto) {
+    AppRouter.router.push(AppRouter.todoCreateScreen, extra: itemDto);
+  }
+
+  void deleteItem(BuildContext context, int id) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        content: const Text('Are you sure you want to delete the note?'),
+        actions: [
+          TextButton(
+            onPressed: () => AppRouter.router.pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              BlocProvider.of<TodoCubit>(context).deleteTodo(id);
+              AppRouter.router.pop();
+            },
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class TodoListItemWidget extends StatelessWidget {
-  final int id;
   final String title;
   final String subtitle;
+  final VoidCallback onTap;
+  final VoidCallback onDelete;
 
   const TodoListItemWidget({
     super.key,
-    required this.id,
     required this.title,
     required this.subtitle,
+    required this.onTap,
+    required this.onDelete,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AppRouter.router.push(
-        AppRouter.todoCreateScreen,
-        extra: TodoItemDto(id: id, title: title, text: subtitle),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      onTap: onTap,
+      onLongPress: onDelete,
+      child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title),
-                Text(subtitle),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(title),
+                    Text(subtitle),
+                  ],
+                ),
+              ),
+              const Icon(Icons.arrow_circle_right),
+            ],
           ),
-          const Icon(Icons.arrow_circle_right),
+          const Divider(),
         ],
       ),
     );

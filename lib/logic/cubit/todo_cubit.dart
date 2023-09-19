@@ -8,19 +8,19 @@ part 'todo_state.dart';
 class TodoCubit extends Cubit<TodoState> with HydratedMixin {
   TodoCubit() : super(const TodoState(items: []));
 
-  void saveToDo(int id, String title, String text) {
+  void saveTodo(int id, String title, String text) {
     final item = TodoItemDto(id: id, title: title, text: text);
     emit(TodoState(items: [...state.items, item]));
   }
 
-  void editToDo(int id, String title, String text) {
+  void editTodo(int id, String title, String text) {
     var itemIndex = state.items.indexWhere((element) => element.id == id);
     state.items[itemIndex].title = title;
     state.items[itemIndex].text = text;
     emit(TodoState(items: state.items));
   }
 
-  void clearToDo(int id) {
+  void deleteTodo(int id) {
     state.items.removeWhere((element) => element.id == id);
     emit(TodoState(items: state.items));
   }

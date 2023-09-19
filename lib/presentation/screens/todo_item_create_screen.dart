@@ -70,9 +70,9 @@ class _TodoItemCreateScreenState extends State<TodoItemCreateScreen> {
 
     if (blocProvider.state.items
         .any((element) => element.id == widget.itemDto.id)) {
-      blocProvider.editToDo(widget.itemDto.id, title, description);
+      blocProvider.editTodo(widget.itemDto.id, title, description);
     } else {
-      blocProvider.saveToDo(widget.itemDto.id, title, description);
+      blocProvider.saveTodo(widget.itemDto.id, title, description);
     }
 
     AppRouter.router.pop();
