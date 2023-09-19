@@ -1,3 +1,4 @@
+import 'package:carlist/data/models/todo_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -5,6 +6,8 @@ import '../../logic/cubit/todo_cubit.dart';
 
 class ToDoItemsListScreen extends StatelessWidget {
   const ToDoItemsListScreen({super.key});
+
+  static List<TodoItemDto> todoItems = [];
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +22,14 @@ class ToDoItemsListScreen extends StatelessWidget {
           children: [
             BlocBuilder<TodoCubit, TodoState>(
               builder: (context, state) {
+                todoItems = state.items;
                 return Expanded(
                   child: ListView.builder(
-                    itemCount: 1,
-                    itemBuilder: (ctx, index) => ToDoListItemWidget(
-                      title: state.title,
-                      subtitle: state.text,
+                    itemCount: todoItems.length,
+                    itemBuilder: (ctx, index) => TodoListItemWidget(
+                      id: todoItems[index].id,
+                      title: todoItems[index].title,
+                      subtitle: todoItems[index].text,
                     ),
                   ),
                 );
@@ -33,16 +38,27 @@ class ToDoItemsListScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed(
+            '/create',
+            arguments: TodoItemDto(id: todoItems.length + 2),
+          );
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
 
-class ToDoListItemWidget extends StatelessWidget {
+class TodoListItemWidget extends StatelessWidget {
+  final int id;
   final String title;
   final String subtitle;
 
-  const ToDoListItemWidget({
+  const TodoListItemWidget({
     super.key,
+    required this.id,
     required this.title,
     required this.subtitle,
   });
@@ -50,7 +66,10 @@ class ToDoListItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed('/create'),
+      onTap: () => Navigator.of(context).pushNamed(
+        '/create',
+        arguments: TodoItemDto(id: id),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

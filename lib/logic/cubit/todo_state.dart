@@ -1,25 +1,25 @@
 part of 'todo_cubit.dart';
 
 class TodoState {
-  final String title;
-  final String text;
+  final List<TodoItemDto> items;
 
   const TodoState({
-    this.title = '',
-    this.text = '',
+    required this.items,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'title': title,
-      'text': text,
+      'items': items.map((x) => x.toMap()).toList(),
     };
   }
 
   factory TodoState.fromMap(Map<String, dynamic> map) {
     return TodoState(
-      title: map['title'] as String,
-      text: map['text'] as String,
+      items: List<TodoItemDto>.from(
+        (map['items'] as List<int>).map<TodoItemDto>(
+          (x) => TodoItemDto.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
     );
   }
 

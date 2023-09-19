@@ -1,3 +1,4 @@
+import 'package:carlist/data/models/todo_item_model.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/todo_item_create_screen.dart';
@@ -13,6 +14,7 @@ class AppRouter {
       case '/create':
         return MaterialPageRoute(
           builder: (context) => const ToDoItemCreateScreen(),
+          settings: const RouteSettings(arguments: TodoItemDto),
         );
       default:
         return null;
