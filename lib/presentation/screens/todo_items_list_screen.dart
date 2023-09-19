@@ -1,11 +1,12 @@
 import 'package:carlist/data/models/todo_item_model.dart';
+import 'package:carlist/presentation/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../logic/cubit/todo_cubit.dart';
 
-class ToDoItemsListScreen extends StatelessWidget {
-  const ToDoItemsListScreen({super.key});
+class TodoItemsListScreen extends StatelessWidget {
+  const TodoItemsListScreen({super.key});
 
   static List<TodoItemDto> todoItems = [];
 
@@ -14,7 +15,7 @@ class ToDoItemsListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('ToDo List'),
+        title: const Text('Todo List'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -39,12 +40,10 @@ class ToDoItemsListScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed(
-            '/create',
-            arguments: TodoItemDto(id: todoItems.length + 2),
-          );
-        },
+        onPressed: () => AppRouter.router.push(
+          AppRouter.todoCreateScreen,
+          extra: TodoItemDto(id: todoItems.length + 2),
+        ),
         child: const Icon(Icons.add),
       ),
     );
@@ -66,9 +65,9 @@ class TodoListItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed(
-        '/create',
-        arguments: TodoItemDto(id: id),
+      onTap: () => AppRouter.router.push(
+        AppRouter.todoCreateScreen,
+        extra: TodoItemDto(id: id, title: title, text: subtitle),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,14 +87,4 @@ class TodoListItemWidget extends StatelessWidget {
       ),
     );
   }
-}
-
-class ToDoListItem {
-  final String title;
-  final String subtitle;
-
-  ToDoListItem({
-    required this.title,
-    required this.subtitle,
-  });
 }

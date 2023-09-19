@@ -25,14 +25,14 @@ class Main extends StatelessWidget {
           create: (context) => TodoCubit(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'CarList',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
           useMaterial3: true,
         ),
-        onGenerateRoute: AppRouter().onGeneratedRoute,
+        routerConfig: AppRouter.router,
       ),
     );
   }
