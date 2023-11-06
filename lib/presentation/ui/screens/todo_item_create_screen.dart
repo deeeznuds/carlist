@@ -1,9 +1,10 @@
 import 'package:carlist/data/models/todo_item_model.dart';
 import 'package:carlist/presentation/router/app_router.dart';
+import 'package:carlist/presentation/ui/widgets/appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../logic/cubit/todo_cubit.dart';
+import '../../../logic/cubit/todo_cubit.dart';
 
 class TodoItemCreateScreen extends StatefulWidget {
   final TodoItemDto itemDto;
@@ -40,9 +41,12 @@ class _TodoItemCreateScreenState extends State<TodoItemCreateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('New Todo'),
+      // appBar: AppBar(
+      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      //   title: const Text('New Todo'),
+      // ),
+      appBar: const AppBarWidget(
+        title: 'New Todo',
       ),
       body: Column(
         children: [

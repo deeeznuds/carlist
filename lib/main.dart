@@ -1,3 +1,4 @@
+import 'package:carlist/presentation/ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -28,10 +29,7 @@ class Main extends StatelessWidget {
       child: MaterialApp.router(
         title: 'CarList',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
-          useMaterial3: true,
-        ),
+        theme: AppTheme.theme,
         routerConfig: AppRouter.router,
       ),
     );
