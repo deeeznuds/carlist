@@ -24,11 +24,76 @@ class AppTheme {
       scaffoldBackgroundColor: Colors.white,
       appBarTheme: const AppBarTheme(
         color: AppColors.white,
+        surfaceTintColor: AppColors.white,
         systemOverlayStyle: SystemUiOverlayStyle.light,
-        elevation: 8,
-        shadowColor: Colors.black26,
         centerTitle: true,
         actionsIconTheme: IconThemeData(color: AppColors.primary),
+      ),
+      textTheme: const TextTheme(
+        displayLarge: TextStyle(
+          fontSize: 26,
+          color: AppColors.black,
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w700,
+        ),
+        displayMedium: TextStyle(
+          fontSize: 24,
+          color: AppColors.black,
+          fontWeight: FontWeight.w700,
+          fontFamily: 'Poppins',
+        ),
+        displaySmall: TextStyle(
+          fontSize: 22,
+          color: AppColors.black,
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w600,
+        ),
+        headlineMedium: TextStyle(
+          fontSize: 20,
+          color: AppColors.black,
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w700,
+        ),
+        headlineSmall: TextStyle(
+          fontSize: 18,
+          color: AppColors.black,
+          fontWeight: FontWeight.w600,
+          fontFamily: 'Poppins',
+        ),
+        titleLarge: TextStyle(
+          fontSize: 16,
+          fontFamily: 'Poppins',
+          color: AppColors.black,
+          fontWeight: FontWeight.w700,
+        ),
+        titleMedium: TextStyle(
+          fontSize: 16,
+          color: AppColors.black,
+          fontFamily: 'Poppins',
+        ),
+        titleSmall: TextStyle(
+          fontSize: 14,
+          color: AppColors.black,
+          fontWeight: FontWeight.w600,
+          fontFamily: 'Poppins',
+        ),
+        bodyLarge: TextStyle(
+          fontSize: 12,
+          color: AppColors.black,
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w500,
+        ),
+        bodyMedium: TextStyle(
+          fontSize: 14,
+          color: AppColors.black,
+          fontFamily: 'Poppins',
+          fontWeight: FontWeight.w500,
+        ),
+        bodySmall: TextStyle(
+          fontSize: 14,
+          color: AppColors.black,
+          fontFamily: 'Poppins',
+        ),
       ),
     );
   }
