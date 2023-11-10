@@ -1,7 +1,8 @@
-import 'package:carlist/constants/ui_sizes.dart';
 import 'package:carlist/data/models/todo_item_model.dart';
 import 'package:carlist/presentation/router/app_router.dart';
 import 'package:carlist/presentation/screens/todo_item_create_screen.dart';
+import 'package:carlist/presentation/ui/widgets/appbar_widget.dart';
+import 'package:carlist/presentation/ui/widgets/card_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,10 +16,7 @@ class TodoItemsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Todo List'),
-      ),
+      appBar: const AppBarWidget(title: 'Todo List', backEnabled: false),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -29,7 +27,7 @@ class TodoItemsListScreen extends StatelessWidget {
                 return Expanded(
                   child: ListView.builder(
                     itemCount: todoItems.length,
-                    itemBuilder: (ctx, index) => TodoListItemWidget(
+                    itemBuilder: (ctx, index) => CardItemWidget(
                       title: todoItems[index].title,
                       subtitle: todoItems[index].text,
                       onTap: () => navigateToItem(
@@ -85,55 +83,6 @@ class TodoItemsListScreen extends StatelessWidget {
             child: const Text('Delete'),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class TodoListItemWidget extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
-  final VoidCallback onDelete;
-
-  const TodoListItemWidget({
-    super.key,
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-    required this.onDelete,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      onLongPress: onDelete,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(UiSizes.largeBorderRadius),
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(title),
-                      Text(subtitle),
-                    ],
-                  ),
-                ),
-                const Icon(Icons.arrow_circle_right),
-              ],
-            ),
-            const Divider(),
-          ],
-        ),
       ),
     );
   }

@@ -2,10 +2,10 @@ import 'package:carlist/constants/ui_sizes.dart';
 import 'package:carlist/presentation/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
 
-class BackBtn extends StatelessWidget {
+class BackButtonWidget extends StatelessWidget {
   final VoidCallback onTap;
 
-  const BackBtn(this.onTap, {super.key});
+  const BackButtonWidget(this.onTap, {super.key});
 
   @override
   Widget build(BuildContext context) {

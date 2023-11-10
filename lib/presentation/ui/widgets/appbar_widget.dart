@@ -22,7 +22,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: AppBar(
-        leading: backEnabled ? BackBtn(_onBack) : null,
+        leading: backEnabled ? BackButtonWidget(_onBack) : null,
         leadingWidth: 32,
         title: title != null
             ? Text(
