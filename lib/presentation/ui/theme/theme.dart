@@ -22,6 +22,12 @@ class AppTheme {
         onSurface: AppColors.black,
       ),
       scaffoldBackgroundColor: Colors.white,
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        },
+      ),
       appBarTheme: const AppBarTheme(
         color: AppColors.white,
         surfaceTintColor: AppColors.white,
