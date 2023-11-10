@@ -7,7 +7,7 @@ import 'package:carlist/data/models/todo_item_model.dart';
 import 'package:carlist/presentation/router/app_router.dart';
 import 'package:carlist/presentation/ui/widgets/appbar_widget.dart';
 
-import '../../../logic/cubit/todo_cubit.dart';
+import '../../logic/cubit/todo_cubit.dart';
 
 class TodoItemCreateScreenArgs {
   final TodoItemDto itemDto;

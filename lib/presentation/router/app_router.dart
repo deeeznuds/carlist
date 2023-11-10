@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 
-import '../ui/screens/todo_item_create_screen.dart';
-import '../ui/screens/todo_items_list_screen.dart';
+import '../screens/todo_item_create_screen.dart';
+import '../screens/todo_items_list_screen.dart';
 
 class AppRouter {
   static const String todoCreateScreen = '/create';
