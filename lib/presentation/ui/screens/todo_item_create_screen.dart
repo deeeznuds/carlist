@@ -41,10 +41,6 @@ class _TodoItemCreateScreenState extends State<TodoItemCreateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      //   title: const Text('New Todo'),
-      // ),
       appBar: const AppBarWidget(
         title: 'New Todo',
       ),
