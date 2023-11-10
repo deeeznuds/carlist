@@ -1,4 +1,3 @@
-import 'package:carlist/data/models/todo_item_model.dart';
 import 'package:go_router/go_router.dart';
 
 import '../ui/screens/todo_item_create_screen.dart';
@@ -18,7 +17,7 @@ class AppRouter {
       GoRoute(
         path: todoCreateScreen,
         builder: (context, state) =>
-            TodoItemCreateScreen(itemDto: state.extra as TodoItemDto),
+            TodoItemCreateScreen(args: state.extra as Map<String, dynamic>),
       ),
     ],
   );

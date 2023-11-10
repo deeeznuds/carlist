@@ -1,21 +1,52 @@
-import 'package:carlist/data/models/todo_item_model.dart';
-import 'package:carlist/presentation/router/app_router.dart';
-import 'package:carlist/presentation/ui/widgets/appbar_widget.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:carlist/data/models/todo_item_model.dart';
+import 'package:carlist/presentation/router/app_router.dart';
+import 'package:carlist/presentation/ui/widgets/appbar_widget.dart';
+
 import '../../../logic/cubit/todo_cubit.dart';
 
-class TodoItemCreateScreen extends StatefulWidget {
+class TodoItemCreateScreenArgs {
   final TodoItemDto itemDto;
 
-  const TodoItemCreateScreen({super.key, required this.itemDto});
+  const TodoItemCreateScreenArgs({required this.itemDto});
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'itemDto': itemDto.toMap(),
+    };
+  }
+
+  factory TodoItemCreateScreenArgs.fromMap(Map<String, dynamic> map) {
+    return TodoItemCreateScreenArgs(
+      itemDto: TodoItemDto.fromMap(map['itemDto'] as Map<String, dynamic>),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory TodoItemCreateScreenArgs.fromJson(String source) =>
+      TodoItemCreateScreenArgs.fromMap(
+          json.decode(source) as Map<String, dynamic>);
+}
+
+class TodoItemCreateScreen extends StatefulWidget {
+  final Map<String, dynamic> args;
+
+  const TodoItemCreateScreen({
+    Key? key,
+    required this.args,
+  }) : super(key: key);
 
   @override
   State<TodoItemCreateScreen> createState() => _TodoItemCreateScreenState();
 }
 
 class _TodoItemCreateScreenState extends State<TodoItemCreateScreen> {
+  late final TodoItemCreateScreenArgs args;
   late final TextEditingController titleController;
   late final TextEditingController descriptionController;
 
@@ -25,8 +56,9 @@ class _TodoItemCreateScreenState extends State<TodoItemCreateScreen> {
   @override
   void initState() {
     super.initState();
-    title = widget.itemDto.title;
-    description = widget.itemDto.text;
+    args = TodoItemCreateScreenArgs.fromMap(widget.args);
+    title = args.itemDto.title;
+    description = args.itemDto.text;
     titleController = TextEditingController(text: title);
     descriptionController = TextEditingController(text: description);
   }
@@ -69,10 +101,10 @@ class _TodoItemCreateScreenState extends State<TodoItemCreateScreen> {
     final blocProvider = BlocProvider.of<TodoCubit>(context);
 
     if (blocProvider.state.items
-        .any((element) => element.id == widget.itemDto.id)) {
-      blocProvider.editTodo(widget.itemDto.id, title, description);
+        .any((element) => element.id == args.itemDto.id)) {
+      blocProvider.editTodo(args.itemDto.id, title, description);
     } else {
-      blocProvider.saveTodo(widget.itemDto.id, title, description);
+      blocProvider.saveTodo(args.itemDto.id, title, description);
     }
 
     AppRouter.router.pop();

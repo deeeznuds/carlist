@@ -16,15 +16,19 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      leading: backEnabled ? _BackBtn(_onBack) : null,
-      title: title != null
-          ? Text(
-              title!,
-              style: Theme.of(context).textTheme.titleLarge,
-            )
-          : null,
-      actions: actions,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: AppBar(
+        leading: backEnabled ? _BackBtn(_onBack) : null,
+        leadingWidth: 32,
+        title: title != null
+            ? Text(
+                title!,
+                style: Theme.of(context).textTheme.titleLarge,
+              )
+            : null,
+        actions: actions,
+      ),
     );
   }
 
@@ -44,14 +48,14 @@ class _BackBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Material(
           color: AppColors.borderLight,
           child: InkWell(
             onTap: onTap,
-            child: const Icon(Icons.arrow_back_ios_new_rounded, size: 16),
+            child: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
           ),
         ),
       ),
