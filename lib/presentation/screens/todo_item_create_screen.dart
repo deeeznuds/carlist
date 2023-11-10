@@ -12,30 +12,6 @@ import 'package:carlist/presentation/ui/widgets/appbar_widget.dart';
 
 import '../../logic/cubit/todo_cubit.dart';
 
-class TodoItemCreateScreenArgs {
-  final TodoItemDto itemDto;
-
-  const TodoItemCreateScreenArgs({required this.itemDto});
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'itemDto': itemDto.toMap(),
-    };
-  }
-
-  factory TodoItemCreateScreenArgs.fromMap(Map<String, dynamic> map) {
-    return TodoItemCreateScreenArgs(
-      itemDto: TodoItemDto.fromMap(map['itemDto'] as Map<String, dynamic>),
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory TodoItemCreateScreenArgs.fromJson(String source) =>
-      TodoItemCreateScreenArgs.fromMap(
-          json.decode(source) as Map<String, dynamic>);
-}
-
 class TodoItemCreateScreen extends StatefulWidget {
   final Map<String, dynamic> args;
 
@@ -116,4 +92,28 @@ class _TodoItemCreateScreenState extends State<TodoItemCreateScreen> {
 
     AppRouter.router.pop();
   }
+}
+
+class TodoItemCreateScreenArgs {
+  final TodoItemDto itemDto;
+
+  const TodoItemCreateScreenArgs({required this.itemDto});
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'itemDto': itemDto.toMap(),
+    };
+  }
+
+  factory TodoItemCreateScreenArgs.fromMap(Map<String, dynamic> map) {
+    return TodoItemCreateScreenArgs(
+      itemDto: TodoItemDto.fromMap(map['itemDto'] as Map<String, dynamic>),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory TodoItemCreateScreenArgs.fromJson(String source) =>
+      TodoItemCreateScreenArgs.fromMap(
+          json.decode(source) as Map<String, dynamic>);
 }
