@@ -6,6 +6,6 @@ class UiSizes {
   //Border radius
   static const double btnBorderRadius = 99;
   static const double largeBorderRadius = 16;
-  static const double mediumBorderRadius = 16;
-  static const double smallBorderRadius = 16;
+  static const double mediumBorderRadius = 14;
+  static const double smallBorderRadius = 12;
 }
