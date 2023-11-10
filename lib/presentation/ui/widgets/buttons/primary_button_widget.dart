@@ -1,3 +1,4 @@
+import 'package:carlist/constants/ui_sizes.dart';
 import 'package:carlist/presentation/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class PrimaryButtonWidget extends StatelessWidget {
             offset: const Offset(0, 10),
           ),
         ],
-        borderRadius: BorderRadius.circular(99),
+        borderRadius: BorderRadius.circular(UiSizes.btnBorderRadius),
       ),
       child: ElevatedButton(
         onPressed: onTap,

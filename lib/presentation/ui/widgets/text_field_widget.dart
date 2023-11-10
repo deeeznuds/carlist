@@ -1,3 +1,4 @@
+import 'package:carlist/constants/ui_sizes.dart';
 import 'package:carlist/presentation/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   final textController = TextEditingController();
 
   OutlineInputBorder get defaultBorderStyle => OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(UiSizes.mediumBorderRadius),
         borderSide: BorderSide.none,
       );
 

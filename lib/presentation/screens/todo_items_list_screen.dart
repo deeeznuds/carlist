@@ -1,3 +1,4 @@
+import 'package:carlist/constants/ui_sizes.dart';
 import 'package:carlist/data/models/todo_item_model.dart';
 import 'package:carlist/presentation/router/app_router.dart';
 import 'package:carlist/presentation/screens/todo_item_create_screen.dart';
@@ -108,26 +109,31 @@ class TodoListItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       onLongPress: onDelete,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(title),
-                    Text(subtitle),
-                  ],
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(UiSizes.largeBorderRadius),
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(title),
+                      Text(subtitle),
+                    ],
+                  ),
                 ),
-              ),
-              const Icon(Icons.arrow_circle_right),
-            ],
-          ),
-          const Divider(),
-        ],
+                const Icon(Icons.arrow_circle_right),
+              ],
+            ),
+            const Divider(),
+          ],
+        ),
       ),
     );
   }

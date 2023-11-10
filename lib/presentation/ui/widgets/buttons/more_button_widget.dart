@@ -1,3 +1,4 @@
+import 'package:carlist/constants/ui_sizes.dart';
 import 'package:carlist/presentation/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class MoreButtonWidget extends StatelessWidget {
       height: 32,
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(UiSizes.smallBorderRadius),
         child: Material(
           color: AppColors.borderLight,
           child: InkWell(

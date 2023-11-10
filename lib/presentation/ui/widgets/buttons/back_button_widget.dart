@@ -1,3 +1,4 @@
+import 'package:carlist/constants/ui_sizes.dart';
 import 'package:carlist/presentation/ui/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class BackBtn extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(UiSizes.smallBorderRadius),
         child: Material(
           color: AppColors.borderLight,
           child: InkWell(
