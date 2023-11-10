@@ -20,6 +20,7 @@ class AppColors {
   static const Color grayMedium = Color(0xFFADA4A5);
   static const Color grayLight = Color(0xFFDDDADA);
 
+  //TODO: rename
   static const Color borderLight = Color(0xFFF7F8F8);
 
   static const Color error = Colors.red;

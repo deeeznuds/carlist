@@ -78,7 +78,7 @@ class AppTheme {
           fontFamily: 'Poppins',
         ),
         bodyLarge: TextStyle(
-          fontSize: 12,
+          fontSize: 14,
           color: AppColors.black,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w500,
@@ -87,10 +87,9 @@ class AppTheme {
           fontSize: 14,
           color: AppColors.black,
           fontFamily: 'Poppins',
-          fontWeight: FontWeight.w500,
         ),
         bodySmall: TextStyle(
-          fontSize: 14,
+          fontSize: 12,
           color: AppColors.black,
           fontFamily: 'Poppins',
         ),

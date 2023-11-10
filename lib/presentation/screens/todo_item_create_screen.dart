@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:carlist/constants/ui_sizes.dart';
+import 'package:carlist/presentation/ui/widgets/buttons/primary_button_widget.dart';
+import 'package:carlist/presentation/ui/widgets/text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,8 +50,6 @@ class TodoItemCreateScreen extends StatefulWidget {
 
 class _TodoItemCreateScreenState extends State<TodoItemCreateScreen> {
   late final TodoItemCreateScreenArgs args;
-  late final TextEditingController titleController;
-  late final TextEditingController descriptionController;
 
   String title = '';
   String description = '';
@@ -59,40 +60,46 @@ class _TodoItemCreateScreenState extends State<TodoItemCreateScreen> {
     args = TodoItemCreateScreenArgs.fromMap(widget.args);
     title = args.itemDto.title;
     description = args.itemDto.text;
-    titleController = TextEditingController(text: title);
-    descriptionController = TextEditingController(text: description);
-  }
-
-  @override
-  void dispose() {
-    titleController.dispose();
-    descriptionController.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWidget(
+      appBar: AppBarWidget(
         title: 'New Todo',
+        moreAction: () {},
       ),
-      body: Column(
-        children: [
-          TextField(
-            controller: titleController,
-            onChanged: (value) => title = value,
-            decoration: const InputDecoration(hintText: 'Title'),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: TextField(
-              controller: descriptionController,
-              onChanged: (value) => description = value,
-              decoration: const InputDecoration(hintText: 'Description'),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: UiSizes.horizontalPadding,
+          vertical: UiSizes.verticalPadding,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                TextFieldWidget(
+                  initialValue: title,
+                  hintText: 'Title',
+                  onChanged: (value) => title = value,
+                ),
+                const SizedBox(height: 15),
+                TextFieldWidget(
+                  initialValue: description,
+                  hintText: 'Text',
+                  maxLines: 10,
+                  onChanged: (value) => description = value,
+                ),
+              ],
             ),
-          ),
-          ElevatedButton(onPressed: saveTodo, child: const Text('SAVE')),
-        ],
+            PrimaryButtonWidget(
+              label: 'Save',
+              onTap: saveTodo,
+              margin: const EdgeInsets.only(bottom: 15),
+            ),
+          ],
+        ),
       ),
     );
   }
