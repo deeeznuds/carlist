@@ -47,7 +47,7 @@ class _TodoItemCreateScreenState extends State<TodoItemCreateScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: UiSizes.horizontalPadding,
+          horizontal: UiSizes.defaultPadding,
           vertical: UiSizes.verticalPadding,
         ),
         child: Column(

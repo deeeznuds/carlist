@@ -2,7 +2,7 @@ import 'package:carlist/data/models/todo_item_model.dart';
 import 'package:carlist/presentation/router/app_router.dart';
 import 'package:carlist/presentation/screens/todo_item_create_screen.dart';
 import 'package:carlist/presentation/ui/widgets/appbar_widget.dart';
-import 'package:carlist/presentation/ui/widgets/card_item_widget.dart';
+import 'package:carlist/presentation/ui/widgets/cards/card_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,7 +37,8 @@ class TodoItemsListScreen extends StatelessWidget {
                           text: todoItems[index].text,
                         ),
                       ),
-                      onDelete: () => deleteItem(context, todoItems[index].id),
+                      onLongPress: () =>
+                          deleteItem(context, todoItems[index].id),
                     ),
                   ),
                 );

@@ -1,6 +1,6 @@
 class UiSizes {
   //Padding
-  static const double horizontalPadding = 15;
+  static const double defaultPadding = 15;
   static const double verticalPadding = 20;
 
   //Border radius
