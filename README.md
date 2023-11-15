@@ -1,16 +1,3 @@
 # carlist
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Introducing "CarList": Your ultimate mobile companion for building the car of your dreams! This innovative app is your virtual garage where you can meticulously document and plan every detail of your dream car project. Create detailed records of your current build, outline future modifications, and track progress seamlessly. From engine upgrades to aesthetic enhancements, "CarList" empowers you to visualize, organize, and achieve your automotive aspirations. Stay on track, share your progress, and turn your dream car into a reality, one plan at a time!
